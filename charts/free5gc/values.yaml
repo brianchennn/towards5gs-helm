@@ -39,7 +39,7 @@ global:
   smf:
     n4if:
       ipAddress: 10.100.50.244
-  #Global network parametes
+  #Global network parameters
   n2network:
     enabled: true
     name: n2network
@@ -71,7 +71,7 @@ global:
     enabled: true
     name: n6network
     type: ipvlan
-    masterIf: eth1
+    masterIf: eth0
     subnetIP: 10.100.100.0
     cidr: 24
     gatewayIP: 10.100.100.1
