@@ -34,7 +34,7 @@ global:
   n4network:
     enabled: true
     name: n4network
-    type: ipvlan
+    type: macvlan
     masterIf: eth0
     subnetIP: 10.100.50.240
     cidr: 29

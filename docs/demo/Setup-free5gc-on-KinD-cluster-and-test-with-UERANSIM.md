@@ -87,7 +87,7 @@ As documented in the Free5GC documentation:
       n6network:
 			    enabled: true
 			    name: n6network
-			    type: ipvlan
+			    type: macvlan
 			    masterIf: eth0
 			    subnetIP: 172.18.0.0
 			    cidr: 16

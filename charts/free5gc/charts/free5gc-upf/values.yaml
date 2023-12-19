@@ -23,7 +23,7 @@ global:
   n4network:
     enabled: true
     name: n4network
-    type: ipvlan
+    type: macvlan
     masterIf: eth0
     subnetIP: 10.100.50.240
     cidr: 29
@@ -32,7 +32,7 @@ global:
   n3network:
     enabled: true
     name: n3network
-    type: ipvlan
+    type: macvlan
     masterIf: eth0
     subnetIP: 10.100.50.232
     cidr: 29
@@ -45,7 +45,7 @@ global:
     masterIf: eth0
     subnetIP: 10.100.100.0
     cidr: 24
-    gatewayIP: 10.100.100.12
+    gatewayIP: 10.100.100.1
     excludeIP: 10.100.100.254
   # n6network:
   #   enabled: true
@@ -59,7 +59,7 @@ global:
   n9network:
     enabled: true
     name: n9network
-    type: ipvlan
+    type: macvlan
     masterIf: eth0
     subnetIP: 10.100.50.224
     cidr: 29
