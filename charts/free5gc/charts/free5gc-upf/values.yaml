@@ -47,15 +47,6 @@ global:
     cidr: 24
     gatewayIP: 10.100.100.1
     excludeIP: 10.100.100.254
-  # n6network:
-  #   enabled: true
-  #   name: n6network
-  #   type: macvlan
-  #   masterIf: eth0
-  #   subnetIP: 10.10.0.0
-  #   cidr: 24
-  #   gatewayIP: 10.10.0.1
-  #   excludeIP: 10.10.0.254
   n9network:
     enabled: true
     name: n9network
