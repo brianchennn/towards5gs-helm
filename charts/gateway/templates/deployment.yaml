@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gw-macvlan-deployment
+  labels:
+    app: gw-macvlan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gw-macvlan
+  template:
+    metadata:
+      labels:
+        app: gw-macvlan
+      annotations:
+        k8s.v1.cni.cncf.io/networks: '[ { "name": "n6network-gw", "interface": "n6", "ips": [ "10.100.100.1/24" ] } ]'
+    spec:
+      containers:
+      - name: gw-macvlan
+        image: networkstatic/iperf3
+        securityContext:
+          privileged: true
+        command: ["/bin/sh"]
+        args: [ "-c", "apt update; apt -y install iproute2 procps iptables; ip route add 10.1.0.0/16 via 10.100.100.12; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; sysctl -w net.ipv4.ip_forward=1; sleep infinity;" ]

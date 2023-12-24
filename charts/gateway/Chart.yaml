@@ -1,0 +1,9 @@
+apiVersion: v2
+name: gateway
+description: A Helm chart to deploy n6 gateway
+version: 1.0.0
+appVersion: latest
+icon: https://raw.githubusercontent.com/aligungr/UERANSIM/master/.github/logo.png
+maintainers:
+  - email: ny40ny40ny.cs11@nycu.edu.tw
+    name: brianchennn
