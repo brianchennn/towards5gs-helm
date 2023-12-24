@@ -1,10 +1,10 @@
+{{- with .Values.global.n6network }}
 apiVersion: "k8s.cni.cncf.io/v1"
 kind: NetworkAttachmentDefinition
 metadata:
   name: n6network-gw
 spec:
   config: '{
-{{- with .Values.global.n6network }}
     "cniVersion": "0.3.1",
       "name": "n6network-gw",
       "plugins": [
@@ -13,21 +13,21 @@ spec:
           "capabilities": { "ips": true },
           "master": {{ .masterIf | quote }},
 
-{{- if eq .type "macvlan" }}
+        {{- if eq .type "macvlan" }}
           "mode": "bridge",
-{{- else if eq .type "ipvlan" }}
+        {{- else if eq .type "ipvlan" }}
           "mode": "l2",
-{{- end }}
+        {{- end }}
 
           "ipam": {
             "type": "static",
             "routes": [
-{{- range $i, $uePool := .uePools }}
+          {{- range $i, $uePool := .uePools }}
              {
                   "dst": {{ $uePool | quote }},
-                  "gw": "10.100.100.12"
+                  "gw": {{ $.Values.global.n6network.n6GatewayIP | quote }}
              },
-{{- end }}
+          {{- end }}
              {
                   "dst": "10.1.0.0/16",
                   "gw": {{ .n6GatewayIP | quote }}
@@ -39,5 +39,5 @@ spec:
           "type": "tuning"
         }
       ]
-{{- end }}
     }'
+{{- end }}

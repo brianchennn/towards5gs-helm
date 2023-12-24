@@ -14,7 +14,17 @@ spec:
       labels:
         app: gw-macvlan
       annotations:
-        k8s.v1.cni.cncf.io/networks: '[ { "name": "n6network-gw", "interface": "n6", "ips": [ "10.100.100.1/24" ] } ]'
+      {{- with .Values.global }}
+        k8s.v1.cni.cncf.io/networks: '[ 
+                                        { 
+                                          "name": "n6network-gw", 
+                                          "interface": "n6", 
+                                          "ips": [ 
+                                                "{{ .n6If.ipAddress }}/{{ .n6network.cidr }}" 
+                                              ] 
+                                        } 
+                                      ]'
+      {{- end }}
     spec:
       containers:
       - name: gw-macvlan
@@ -22,4 +32,4 @@ spec:
         securityContext:
           privileged: true
         command: ["/bin/sh"]
-        args: [ "-c", "apt update; apt -y install iproute2 procps iptables; ip route add 10.1.0.0/16 via 10.100.100.12; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; sysctl -w net.ipv4.ip_forward=1; sleep infinity;" ]
+        args: [ "-c", "apt update; apt -y install iproute2 procps iptables; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; sysctl -w net.ipv4.ip_forward=1; sleep infinity;" ]

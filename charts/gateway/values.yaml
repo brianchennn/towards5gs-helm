@@ -10,5 +10,5 @@ global:
     uePools:
       - 10.60.0.0/16
       - 10.61.0.0/16
-  n6-if:
+  n6If:
     ipAddress: 10.100.100.1
