@@ -6,10 +6,9 @@ global:
     masterIf: eth0
     subnetIP: 10.100.100.0
     cidr: 24
-    n6-gatewayIP: 10.100.100.12
-    ue-pools:
+    gatewayIP: 10.100.100.12
+    uePools:
       - 10.60.0.0/16
       - 10.61.0.0/16
-      - 10.1.0.0/16
   n6-if:
     ipAddress: 10.100.100.1

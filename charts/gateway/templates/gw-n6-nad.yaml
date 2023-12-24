@@ -4,28 +4,32 @@ metadata:
   name: n6network-gw
 spec:
   config: '{
+{{- with .Values.global.n6network }}
     "cniVersion": "0.3.1",
       "name": "n6network-gw",
       "plugins": [
         {
-          "type": {{ .Values.global.n6network.type | quote  }},
+          "type": {{ .type | quote  }},
           "capabilities": { "ips": true },
-          "master": {{ .Values.global.n6network.masterIf | quote }},
-{{- if eq .Values.global.n6network.type "macvlan" }}
+          "master": {{ .masterIf | quote }},
+
+{{- if eq .type "macvlan" }}
           "mode": "bridge",
-{{- end }}
-{{- if eq .Values.global.n6network.type "ipvlan" }}
+{{- else if eq .type "ipvlan" }}
           "mode": "l2",
 {{- end }}
+
           "ipam": {
             "type": "static",
             "routes": [
+{{- range $i, $uePool := .uePools }}
              {
-                  "dst": "10.1.0.0/16",
+                  "dst": {{ $uePool | quote }},
                   "gw": "10.100.100.12"
              },
+{{- end }}
              {
-                  "dst": "10.61.0.0/16",
+                  "dst": "10.1.0.0/16",
                   "gw": "10.100.100.12"
              }
             ]
@@ -35,4 +39,5 @@ spec:
           "type": "tuning"
         }
       ]
+{{- end }}
     }'
