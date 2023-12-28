@@ -31,5 +31,5 @@ spec:
         image: networkstatic/iperf3
         securityContext:
           privileged: true
-        command: ["/bin/sh"]
-        args: [ "-c", "apt update; apt -y install iproute2 procps iptables; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; sysctl -w net.ipv4.ip_forward=1; sleep infinity;" ]
+        command: [ "/bin/sh", "-c" ]
+        args: [ "apt update; apt -y install iproute2 procps iptables; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; sysctl -w net.ipv4.ip_forward=1; sleep infinity;" ]
