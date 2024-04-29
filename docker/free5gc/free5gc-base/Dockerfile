@@ -1,5 +1,5 @@
 #FROM bitnami/golang:1.14.4 AS builder
-FROM golang:1.14.4-buster AS builder
+FROM golang:1.18.10-buster AS builder
 
 # Control-plane Supporting Packages
 RUN apt-get update
@@ -11,23 +11,27 @@ RUN apt-get -y install wget git sudo
 #RUN go get -u github.com/sirupsen/logrus
 
 # Get Free5GC source code
-RUN cd $GOPATH/src \
-    && git clone --recursive -b v3.3.0 -j `nproc` https://github.com/free5gc/free5gc.git
+# RUN cd $GOPATH/src \
+#    && git clone --recursive -b v3.3.0 -j `nproc` https://github.com/free5gc/free5gc.git
+
+COPY ./free5gc $GOPATH/src/free5gc
+COPY ./nas $GOPATH/src/nas
+COPY ./ngap $GOPATH/src/ngap
+COPY ./openapi $GOPATH/src/openapi
 
 # Build all NFs
 RUN cd $GOPATH/src/free5gc \
     && make
 
 # Install WebConsole's dependencies
-RUN apt remove cmdtest
-RUN apt remove yarn
+RUN apt remove cmdtest yarn nodejs
 RUN apt-get -y install apt-transport-https
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 RUN apt-get update
-RUN apt-get -y install nodejs
-RUN apt-get -y install yarn
+RUN apt-get -y install nodejs yarn
+RUN corepack enable
 
 # Build WebConsole
 RUN cd $GOPATH/src/free5gc \
