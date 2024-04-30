@@ -59,7 +59,8 @@ nrf:
   replicaCount: 1
   image:
     name: towards5gs/free5gc-nrf
-    pullPolicy: Always
+    tag: 3.4.0
+    pullPolicy: Never
   volume:
     mount: /free5gc/config/
   podAnnotations: {}

@@ -11,17 +11,14 @@ RUN apt-get -y install wget git sudo
 #RUN go get -u github.com/sirupsen/logrus
 
 # Get Free5GC source code
-# RUN cd $GOPATH/src \
-#    && git clone --recursive -b v3.3.0 -j `nproc` https://github.com/free5gc/free5gc.git
-
 COPY ./free5gc $GOPATH/src/free5gc
 COPY ./nas $GOPATH/src/nas
 COPY ./ngap $GOPATH/src/ngap
 COPY ./openapi $GOPATH/src/openapi
 
 # Build all NFs
-RUN cd $GOPATH/src/free5gc \
-    && make
+WORKDIR $GOPATH/src/free5gc
+RUN make
 
 # Install WebConsole's dependencies
 RUN apt remove cmdtest yarn nodejs
@@ -33,9 +30,14 @@ RUN apt-get update
 RUN apt-get -y install nodejs yarn
 RUN corepack enable
 
+
 # Build WebConsole
 RUN cd $GOPATH/src/free5gc \
     && make webconsole
+
+# Build the Webconsole Server
+WORKDIR $GOPATH/src/free5gc/webconsole/frontend
+RUN yarn install && yarn build && rm -rf ../public && cp -R build ../public
 
 # Build the final image
 FROM alpine

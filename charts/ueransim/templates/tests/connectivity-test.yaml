@@ -90,7 +90,7 @@ spec:
       containers:
       - name: ue-test-conncection
         image: {{ .Values.ue.test.connectivity.image }}
-        imagePullPolicy: IfNotPresent
+        imagepullPolicy: Never
         command: ["bin/sh"]
         args: ["/scripts/script-connectivity-test.sh"]
         volumeMounts:

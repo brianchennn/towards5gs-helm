@@ -1,4 +1,4 @@
-FROM free5gc-base AS builder
+FROM towards5gs/free5gc-base:3.4.0 AS builder
 FROM alpine:3.13.6
 
 LABEL maintainer="raoufkh <khichane.araouf@gmail.com>"

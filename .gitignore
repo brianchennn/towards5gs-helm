@@ -1,0 +1,5 @@
+docker/free5gc/free5gc-base/free5gc
+docker/free5gc/free5gc-base/ngap
+docker/free5gc/free5gc-base/nas
+docker/free5gc/free5gc-base/openapi
+docker/PacketRusher

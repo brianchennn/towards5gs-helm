@@ -6,16 +6,16 @@ LABEL maintainer="raoufkh <khichane.araouf@gmail.com>"
 ENV GIN_MODE="release"
 
 WORKDIR /free5gc
-RUN mkdir -p log/ config/ TLS/ amf/
+RUN mkdir -p log/ config/ TLS/ chf/
 
 # Copy executable and default certs/configs
-COPY --from=builder /free5gc/amf ./amf
-COPY --from=builder /free5gc/cert/amf.pem ./cert/
-COPY --from=builder /free5gc/cert/amf.key ./cert/
-COPY --from=builder /free5gc/config/amfcfg.yaml ./config/
+COPY --from=builder /free5gc/chf ./chf
+COPY --from=builder /free5gc/cert/chf.pem ./cert/
+COPY --from=builder /free5gc/cert/chf.key ./cert/
+COPY --from=builder /free5gc/config/chfcfg.yaml ./config/
 
 VOLUME [ "/free5gc/config" ]
 #VOLUME [ "/free5gc/config/TLS" ]
 
-WORKDIR /free5gc/amf
+WORKDIR /free5gc/chf
 
