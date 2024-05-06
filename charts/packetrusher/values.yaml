@@ -1,0 +1,68 @@
+#
+# Software Name : towards5gs-helm
+# SPDX-FileCopyrightText: Copyright (c) 2021 Orange
+# SPDX-License-Identifier: Apache-2.0
+#
+# This software is distributed under the Apache License 2.0,
+# the text of which is available at todo
+# or see the "LICENSE" file for more details.
+#
+# Author: Abderaouf KHICHANE, Ilhem FAJJARI, Ayoub BOUSSELMI
+# Software description: An open-source project providing Helm charts to deploy 5G components (Core + RAN) on top of Kubernetes
+#
+# Default values for ueransim-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  #Global network parameters
+  n2network:
+    enabled: true
+    name: n2network
+    type: macvlan
+    masterIf: eth0
+    subnetIP: 10.100.50.248
+    cidr: 29
+    gatewayIP: 10.100.50.254
+    excludeIP: 10.100.50.254
+  n3network:
+    enabled: true
+    name: n3network
+    type: macvlan
+    masterIf: eth0
+    subnetIP: 10.100.50.232
+    cidr: 29
+    gatewayIP: 10.100.50.238
+    excludeIP: 10.100.50.238
+
+projectName: packetrusher
+
+initcontainers:
+  sctp_test:
+    image: 
+      name: towards5gs/sctp_test
+      tag: latest
+      imagePullPolicy: IfNotPresent
+    
+    
+
+packetrusher:
+  enabled: true
+  name: packetrusher
+  replicaCount: 1
+  image:
+    name: towards5gs/packetrusher
+    pullPolicy: Never
+   
+  n2if:  # NGAP
+    ipAddress: 10.100.50.250
+  n3if:  # GTP-U
+    ipAddress: 10.100.50.236
+  
+  amf:
+    n2if:  # NGAP
+      ipAddress: 10.100.50.249
+      port: 38412
+    service:
+      ngap:
+        enabled: false
