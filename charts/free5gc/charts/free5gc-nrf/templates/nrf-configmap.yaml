@@ -17,31 +17,35 @@ metadata:
   name: {{ include "free5gc-nrf.fullname" $ }}-configmap
   labels:
     app: {{ $.Values.global.projectName }}
+
 data:
   nrfcfg.yaml: |
+
     info:
       version: 1.0.2
       description: NRF initial local configuration
 
     configuration:
-      MongoDBName: free5gc
-      MongoDBUrl: mongodb://{{ $.Values.mongodb.service.name }}:{{ $.Values.mongodb.service.port }}
-
-      serviceNameList:
-        {{- .configuration.serviceNameList | nindent 8 }}
-
-      sbi:
-        scheme: {{ $.Values.global.sbi.scheme }}
+      MongoDBName: free5gc # database name in MongoDB
+      MongoDBUrl: mongodb://{{ $.Values.mongodb.service.name }}:{{ $.Values.mongodb.service.port }} # a valid URL of the mongodb
+      sbi: # Service-based interface information
+        scheme: http # the protocol for sbi (http or https)
         registerIPv4: {{ $.Values.global.nrf.service.name }} # IP used to serve NFs or register to another NRF
         bindingIPv4: 0.0.0.0  # IP used to bind the service
-        port: {{ $.Values.global.nrf.service.port }}
-        cert:
-          key: ../cert/nrf.key
-          pem: ../cert/nrf.pem
+        port: {{ $.Values.global.nrf.service.port }} # port used to bind the service
+        tls: # the local path of TLS key
+          pem: ../cert/nrf.pem # NRF TLS Certificate
+          key: ../cert/nrf.key # NRF TLS Private key
+        oauth: true
+      DefaultPlmnId:
+        mcc: 208 # Mobile Country Code (3 digits string, digit: 0~9)
+        mnc: 93 # Mobile Network Code (2 or 3 digits string, digit: 0~9)
+      serviceNameList: # the SBI services provided by this NRF, refer to TS 29.510
+        - nnrf-nfm # Nnrf_NFManagement service
+        - nnrf-disc # Nnrf_NFDiscovery service
 
-      {{- .configuration.configuration | nindent 6 }}
-
-    logger:
-      {{- toYaml .configuration.logger | nindent 6 }}
-
+    logger: # log output setting
+      enable: true # true or false
+      level: info # how detailed to output, value: trace, debug, info, warn, error, fatal, panic
+      reportCaller: false # enable the caller report or not, value: true or false
 {{- end }}

@@ -105,15 +105,4 @@ nrf:
     #  - secretName: chart-example-tls
     #    hosts:
     #      - chart-example.local
-  configuration:
-    serviceNameList: |-
-      - nnrf-nfm
-      - nnrf-disc
-    configuration: |-
-      DefaultPlmnId:
-        mcc: 208
-        mnc: 93
-    logger: # log output setting
-      enable: true # true or false
-      level: info # how detailed to output, value: trace, debug, info, warn, error, fatal, panic
-      reportCaller: false # enable the caller report or not, value: true or false
+
