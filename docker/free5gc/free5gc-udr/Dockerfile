@@ -12,6 +12,7 @@ RUN mkdir -p config/ log/ cert/ udr/
 COPY --from=builder /free5gc/udr ./udr
 COPY --from=builder /free5gc/cert/udr.pem ./cert/
 COPY --from=builder /free5gc/cert/udr.key ./cert/
+COPY --from=builder /free5gc/cert/nrf.pem ./cert/
 COPY --from=builder /free5gc/config/udrcfg.yaml ./config/
 
 VOLUME [ "/free5gc/config" ]

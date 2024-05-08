@@ -15,6 +15,7 @@ RUN mkdir -p log/ cert/ n3iwf/
 COPY --from=builder /free5gc/n3iwf ./n3iwf
 COPY --from=builder /free5gc/cert/n3iwf.pem ./cert/
 COPY --from=builder /free5gc/cert/n3iwf.key ./cert/
+COPY --from=builder /free5gc/cert/nrf.pem ./cert/
 COPY --from=builder /free5gc/config/n3iwfcfg.yaml ./config/
 
 VOLUME [ "/free5gc/config" ]

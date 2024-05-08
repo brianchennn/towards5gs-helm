@@ -12,6 +12,7 @@ RUN mkdir -p log/ cert/ ausf/
 COPY --from=builder /free5gc/ausf ./ausf
 COPY --from=builder /free5gc/cert/ausf.pem ./cert/
 COPY --from=builder /free5gc/cert/ausf.key ./cert/
+COPY --from=builder /free5gc/cert/nrf.pem ./cert/
 COPY --from=builder /free5gc/config/ausfcfg.yaml ./config/
 
 VOLUME [ "/free5gc/config" ]

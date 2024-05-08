@@ -12,6 +12,7 @@ RUN mkdir -p log/ cert/ smf/
 COPY --from=builder /free5gc/smf ./smf
 COPY --from=builder /free5gc/cert/smf.pem ./cert/
 COPY --from=builder /free5gc/cert/smf.key ./cert/
+COPY --from=builder /free5gc/cert/nrf.pem ./cert/
 COPY --from=builder /free5gc/config/smfcfg.yaml ./config/
 COPY --from=builder /free5gc/config/uerouting.yaml ./config/
 

@@ -12,6 +12,7 @@ RUN mkdir -p log/ cert/ nssf/
 COPY --from=builder /free5gc/nssf ./nssf
 COPY --from=builder /free5gc/cert/nssf.pem ./cert/
 COPY --from=builder /free5gc/cert/nssf.key ./cert/
+COPY --from=builder /free5gc/cert/nrf.pem ./cert/
 COPY --from=builder /free5gc/config/nssfcfg.yaml ./config/
 
 VOLUME [ "/free5gc/config" ]

@@ -12,6 +12,7 @@ RUN mkdir -p log/ config/ TLS/ chf/
 COPY --from=builder /free5gc/chf ./chf
 COPY --from=builder /free5gc/cert/chf.pem ./cert/
 COPY --from=builder /free5gc/cert/chf.key ./cert/
+COPY --from=builder /free5gc/cert/nrf.pem ./cert/
 COPY --from=builder /free5gc/config/chfcfg.yaml ./config/
 
 VOLUME [ "/free5gc/config" ]

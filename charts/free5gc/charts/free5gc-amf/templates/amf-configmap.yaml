@@ -69,7 +69,7 @@ data:
       supportDnnList:  # the DNN (Data Network Name) list supported by this AMF
         - internet
       nrfUri: {{ $.Values.global.sbi.scheme }}://{{ $.Values.global.nrf.service.name }}:{{ $.Values.global.nrf.service.port }}
-      nrfCertPem: cert/nrf.pem # NRF Certificate
+      nrfCertPem: ../cert/nrf.pem # NRF Certificate
       security:  # NAS security parameters
         integrityOrder: # the priority of integrity algorithms
           - NIA2
@@ -146,7 +146,7 @@ data:
 
     logger:
       enable: true # true or false
-      level: info # how detailed to output, value: trace, debug, info, warn, error, fatal, panic
+      level: trace # how detailed to output, value: trace, debug, info, warn, error, fatal, panic
       reportCaller: false # enable the caller report or not, value: true or false
 
 {{- end }}

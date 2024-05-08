@@ -12,6 +12,7 @@ RUN mkdir -p log/ cert/ udm/
 COPY --from=builder /free5gc/udm ./udm
 COPY --from=builder /free5gc/cert/udm.pem ./cert/
 COPY --from=builder /free5gc/cert/udm.key ./cert/
+COPY --from=builder /free5gc/cert/nrf.pem ./cert/
 COPY --from=builder /free5gc/config/udmcfg.yaml ./config/
 
 VOLUME [ "/free5gc/config" ]
