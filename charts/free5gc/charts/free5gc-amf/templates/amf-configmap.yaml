@@ -146,7 +146,7 @@ data:
 
     logger:
       enable: true # true or false
-      level: trace # how detailed to output, value: trace, debug, info, warn, error, fatal, panic
+      level: info # how detailed to output, value: trace, debug, info, warn, error, fatal, panic
       reportCaller: false # enable the caller report or not, value: true or false
 
 {{- end }}
