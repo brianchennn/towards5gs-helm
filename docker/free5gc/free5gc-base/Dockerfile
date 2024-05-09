@@ -20,25 +20,6 @@ COPY ./openapi $GOPATH/src/openapi
 WORKDIR $GOPATH/src/free5gc
 RUN make
 
-# Install WebConsole's dependencies
-RUN apt remove cmdtest yarn nodejs
-RUN apt-get -y install apt-transport-https
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-RUN apt-get update
-RUN apt-get -y install nodejs yarn
-RUN corepack enable
-
-
-# Build WebConsole
-RUN cd $GOPATH/src/free5gc \
-    && make webconsole
-
-# Build the Webconsole Server
-WORKDIR $GOPATH/src/free5gc/webconsole/frontend
-RUN yarn install && yarn build && rm -rf ../public && cp -R build ../public
-
 # Build the final image
 FROM alpine
 
@@ -48,10 +29,6 @@ RUN mkdir -p config/ cert/ public
 
 # Copy executables
 COPY --from=builder /go/src/free5gc/bin/* ./
-COPY --from=builder /go/src/free5gc/webconsole/bin/webconsole ./
-
-# Copy static files (webui frontend)
-COPY --from=builder /go/src/free5gc/webconsole/public ./public
 
 # Copy certificates and config files
 COPY --from=builder /go/src/free5gc/config/* ./config/

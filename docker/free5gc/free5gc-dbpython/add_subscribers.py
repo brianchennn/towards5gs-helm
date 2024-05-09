@@ -109,6 +109,8 @@ if args.action == 'add':
     imsi_prefix = initial_imsi[:-9]
     initial_index = int(initial_imsi[-9:])
 
+    free5gc_instance.create_udsf_database()
+
     for _index in range(number_of_ues):
         imsi_suffix = str(initial_index+_index).rjust(9, '0')
         imsi_value = imsi_prefix+imsi_suffix

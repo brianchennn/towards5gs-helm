@@ -17,6 +17,10 @@ class Free5gc:
     def __init__(self, server_ip, server_port):
         self.mongo_server_uri = f'mongodb://{server_ip}:{server_port}/'
 
+    def create_udsf_database():
+        _client = MongoClient(self.mongo_server_uri)
+        udsf_db = myclient["free5gc-udsf"]
+
     def get_subscribers(self):
         _client = MongoClient(self.mongo_server_uri)
         fgcore_db = _client['free5gc']
