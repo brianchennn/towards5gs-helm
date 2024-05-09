@@ -37,6 +37,9 @@ data:
       serviceNameList: # the SBI services provided by this UDSF, refer to TS 29.598
         - nudsf-dr # Nudsf_DataRepository service
         - nudsf-timer # Nudsf_Timer service
+      mongodb:
+        storageId: free5gc-udsf # Database name in MongoDB
+        realmId: {{ $.Values.mongodb.service.name }}:{{ $.Values.mongodb.service.port }}
       nrfUri: {{ $.Values.global.sbi.scheme }}://{{ $.Values.global.nrf.service.name }}:{{ $.Values.global.nrf.service.port }} # a valid URI of NRF
       nrfCertPem: ../cert/nrf.pem # NRF Certificate
 
