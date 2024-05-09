@@ -15,7 +15,7 @@ RUN apt-get -y install nodejs yarn
 RUN corepack enable
 
 # Get Free5GC webconsole source code
-COPY ./free5gc $GOPATH/src/free5gc
+COPY ./base/free5gc $GOPATH/src/free5gc
 
 # Build WebConsole
 WORKDIR $GOPATH/src/free5gc
