@@ -9,6 +9,7 @@ RUN apt-get -y install wget git sudo
 
 # Get Free5GC source code
 COPY ./base/free5gc $GOPATH/src/free5gc
+RUN rm -rf $GOPATH/src/free5gc/bin
 COPY ./base/nas $GOPATH/src/nas
 COPY ./base/ngap $GOPATH/src/ngap
 COPY ./base/openapi $GOPATH/src/openapi
