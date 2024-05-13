@@ -1,2 +1,3 @@
 docker/free5gc/base/*
 docker/PacketRusher
+docker/free5gc/free5gc-base/*
