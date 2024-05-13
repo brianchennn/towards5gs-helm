@@ -7,6 +7,9 @@ all: $(NFs) webui
 $(NFs):
 	docker build -t $(PREFIX)-$@:$(TAG) --build-arg NF=$@ . --no-cache
 
+dbpython:
+	docker build -t $(PREFIX)-$@:$(TAG) -f ./free5gc-$@/Dockerfile ./free5gc-$@ --no-cache
+
 webui:
 	docker build -t $(PREFIX)-webui:$(TAG) -f ./free5gc-webui/Dockerfile .
 

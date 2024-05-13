@@ -11,6 +11,8 @@ args = parser.parse_args()
 
 free5gc_instance = free5gc_db.Free5gc(args.mongo, 27017)
 
+free5gc_instance.add_database("free5gc-udsf")
+
 if args.action == 'list':
     subscribers_data = free5gc_instance.get_subscribers()
     for key, value in subscribers_data.items():
@@ -108,8 +110,6 @@ if args.action == 'add':
 
     imsi_prefix = initial_imsi[:-9]
     initial_index = int(initial_imsi[-9:])
-
-    free5gc_instance.create_udsf_database()
 
     for _index in range(number_of_ues):
         imsi_suffix = str(initial_index+_index).rjust(9, '0')
