@@ -12,7 +12,7 @@
 #
 {{- with .Values.amf }}
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "free5gc-amf.fullname" $ }}-{{ .name }}
   labels:
@@ -74,14 +74,23 @@ spec:
           containerPort: {{ $.Values.global.amf.service.ngap.port }}
           protocol: {{ $.Values.global.amf.service.ngap.protocol }}
         {{- end }}
-        command: ["./amf"]
-        args: ["-c", "../config/amfcfg.yaml"]
+        command: ["/bin/sh", "-c",
+            "echo $POD_INDEX &&
+            cp ../config/amfcfg.yaml /amfcfg.yaml &&
+            sed -i s/cafe00/cafe0$POD_INDEX/g /amfcfg.yaml &&
+            sed -i \"s/amfName: AMF/amfName: AMF$POD_INDEX/g\" /amfcfg.yaml &&
+            ./amf -c /amfcfg.yaml"]
         env:
           - name: GIN_MODE
             value: release
+          - name: POD_INDEX
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['apps.kubernetes.io/pod-index']
         volumeMounts:
-        - mountPath: {{ .volume.mount }}
-          name: {{ include "free5gc-amf.fullname" $ }}-volume
+        - name: {{ include "free5gc-amf.fullname" $ }}-volume
+          mountPath: {{ .volume.mount }}
+
         resources:
             {{- toYaml .resources | nindent 12 }}
       - name: debug
@@ -92,6 +101,7 @@ spec:
           - iperf3 -s -p 5555
         ports:
         - containerPort: 5555
+
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       nodeSelector:
@@ -107,4 +117,5 @@ spec:
           sources:
           - configMap:
               name: {{ include "free5gc-amf.fullname" $ }}-configmap
+
 {{- end }}
