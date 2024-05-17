@@ -63,6 +63,8 @@ spec:
       containers:
       - name: {{ .name }}
         image: {{ .image.name }}:{{ .image.tag | default $.Chart.AppVersion }}
+        resources:
+          {{- toYaml .resources | nindent 10 }}
         imagePullPolicy: {{ .image.pullPolicy }}
         securityContext:
             {{- toYaml .securityContext | nindent 12 }}
@@ -90,18 +92,6 @@ spec:
         volumeMounts:
         - name: {{ include "free5gc-amf.fullname" $ }}-volume
           mountPath: {{ .volume.mount }}
-
-        resources:
-            {{- toYaml .resources | nindent 12 }}
-      - name: debug
-        image: nicolaka/netshoot:latest
-        imagePullPolicy: IfNotPresent
-        command: ["/bin/bash", "-c"]
-        args:
-          - iperf3 -s -p 5555
-        ports:
-        - containerPort: 5555
-
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       nodeSelector:
@@ -117,5 +107,5 @@ spec:
           sources:
           - configMap:
               name: {{ include "free5gc-amf.fullname" $ }}-configmap
-
+  
 {{- end }}

@@ -79,8 +79,8 @@ amf:
   securityContext: {}
   resources:
     requests:
-      cpu: 150m
-      memory: 128Mi
+      cpu: 10m
+      memory: 40Mi
   readinessProbe:
     initialDelaySeconds: 0
     periodSeconds: 1
@@ -100,8 +100,8 @@ amf:
     enabled: true
     minReplicas: 1
     maxReplicas: 100
-    targetCPUUtilizationPercentage: 80
-    # targetMemoryUtilizationPercentage: 80
+    targetCPUUtilizationPercentage: 50
+    targetMemoryUtilizationPercentage: 50
   ingress:
     enabled: false
     annotations: {}
