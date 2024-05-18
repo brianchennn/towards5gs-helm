@@ -57,7 +57,15 @@ spec:
         image: towards5gs/packetrusher
         imagePullPolicy: {{ .image.pullPolicy }}
         env: {{ toYaml .image.env | nindent 8 }}
-
+        volumeMounts:
+        - name: packetrusher-volume
+          mountPath: /config.yml
+      volumes:
+      - name: packetrusher-volume
+        projected:
+          sources:
+          - configMap:
+              name: packetrusher-configmap
 {{- end }}
 {{- end }}
         
