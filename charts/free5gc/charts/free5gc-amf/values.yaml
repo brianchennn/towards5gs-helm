@@ -30,7 +30,7 @@ global:
   amf:
     amfName: AMF1
     n2if:  # NGAP
-      ipAddress: 10.100.50.249
+      ipAddress: 10.100.50.241
     service:
       ngap:
         enabled: true

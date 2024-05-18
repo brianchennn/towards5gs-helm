@@ -19,11 +19,11 @@ metadata:
     app: {{ $.Values.projectName }}
     
 data:
-  config.yaml: |
+  config.yml: |
 
     gnodeb:
       controlif:
-        ip: "10.100.50.249"
+        ip: "10.100.50.250"
         port: 9487
       dataif:
         ip: "10.100.50.236"
@@ -62,7 +62,7 @@ data:
         nea2: true
         nea3: false
     amfif:
-      - ip: "10.100.50.250"
+      - ip: "10.100.50.249"
         port: 38412
       # - ip: "10.10.0.82"
       #   port: 38412

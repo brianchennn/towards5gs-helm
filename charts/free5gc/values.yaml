@@ -27,7 +27,7 @@ global:
     scheme: http
   amf:
     n2if:  # NGAP
-      ipAddress: 10.100.50.249
+      ipAddress: 10.100.50.241
     service:
       ngap:
         enabled: false
@@ -45,8 +45,8 @@ global:
     name: n2network
     type: macvlan
     masterIf: eth0
-    subnetIP: 10.100.50.248
-    cidr: 29
+    subnetIP: 10.100.50.240
+    cidr: 28
     gatewayIP: 10.100.50.254
     excludeIP: 10.100.50.254
   n3network:
@@ -54,8 +54,8 @@ global:
     name: n3network
     type: macvlan
     masterIf: eth0
-    subnetIP: 10.100.50.232
-    cidr: 29
+    subnetIP: 10.100.50.224
+    cidr: 28
     gatewayIP: 10.100.50.238
     excludeIP: 10.100.50.238
   n4network:
