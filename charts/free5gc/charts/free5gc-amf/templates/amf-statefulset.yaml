@@ -33,12 +33,13 @@ spec:
       annotations:
         {{- include "free5gc-amf.amfAnnotations" $ | nindent 8 }}
         {{- if and $.Values.isNgapNeeded $.Values.global.n2network.enabled}}
-        k8s.v1.cni.cncf.io/networks: '[
-            { "name": "{{ $.Values.global.n2network.name }}-{{ include "free5gc-amf.fullname" $ }}",
-              "interface": "n2",
-              "ips": [ "{{ $.Values.global.amf.n2if.ipAddress }}/{{ $.Values.global.n2network.cidr }}" ],
-              "gateway": [ "{{ $.Values.global.n2network.gatewayIP }}" ]
-            }]'
+        k8s.v1.cni.cncf.io/networks: |
+          [
+            {
+              "name": "{{ $.Values.global.n2network.name }}-{{ include "free5gc-amf.fullname" $ }}",
+              "interface": "n2"
+            }
+          ]
         {{- end }}
         checksum/config: {{ include (print $.Template.BasePath "/amf-configmap.yaml") $ | sha256sum }}
       labels:

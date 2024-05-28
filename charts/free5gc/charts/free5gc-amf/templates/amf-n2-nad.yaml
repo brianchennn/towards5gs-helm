@@ -30,7 +30,10 @@ spec:
           "mode": "l2",
 {{- end }}
           "ipam": {
-            "type": "static",
+            "type": "host-local",
+            "subnet": "{{ .Values.global.n2network.subnetIP }}/{{ .Values.global.n2network.cidr }}",
+            "rangeStart": {{ .Values.global.n2network.rangeStart | quote }},
+            "rangeEnd": {{ .Values.global.n2network.rangeEnd | quote }},
             "routes": [
               {
                 "dst": "0.0.0.0/0",

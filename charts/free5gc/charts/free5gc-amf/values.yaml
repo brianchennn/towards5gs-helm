@@ -44,10 +44,12 @@ global:
     name: n2network
     type: macvlan
     masterIf: eth0
-    subnetIP: 10.100.50.248
-    cidr: 29
-    gatewayIP: 10.100.50.254
-    excludeIP: 10.100.50.254
+    subnetIP: 10.100.50.192
+    rangeStart: 10.100.50.193
+    rangeEnd: 10.100.50.206
+    cidr: 28
+    gatewayIP: 10.100.50.207
+    excludeIP: 10.100.50.207
 
 initcontainers:
   curl:
@@ -62,7 +64,7 @@ isNgapNeeded: true
 
 amf:
   name: amf
-  replicaCount: 2
+  replicaCount: 10
   image:
     name: towards5gs/free5gc-amf
     tag: 3.4.0
@@ -79,8 +81,8 @@ amf:
   securityContext: {}
   resources:
     requests:
-      cpu: 10m
-      memory: 40Mi
+      cpu: 20m
+      memory: 50Mi
   readinessProbe:
     initialDelaySeconds: 0
     periodSeconds: 1
@@ -97,9 +99,9 @@ amf:
   tolerations: []
   affinity: {}
   autoscaling:
-    enabled: true
+    enabled: false
     minReplicas: 1
-    maxReplicas: 100
+    maxReplicas: 10
     targetCPUUtilizationPercentage: 50
     targetMemoryUtilizationPercentage: 50
   ingress:
