@@ -33,7 +33,9 @@ spec:
 
 {{- if $.Values.isNgapNeeded }}
 {{- if $.Values.global.amf.service.ngap.enabled }}
+
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -46,8 +48,9 @@ spec:
   ports:
     - name: n2
       port: {{ $.Values.global.amf.service.ngap.port }}
-      nodePort: {{ $.Values.global.amf.service.ngap.nodeport }}
+      # nodePort: {{ $.Values.global.amf.service.ngap.nodeport }}
       protocol: {{ $.Values.global.amf.service.ngap.protocol }}
+  clusterIP: None
   selector:
     project: {{ $.Values.global.projectName }}
     nf: {{ .name }}
@@ -55,3 +58,4 @@ spec:
 {{- end }}
 
 {{- end }}
+

@@ -30,12 +30,12 @@ global:
       ipAddress: 10.100.50.241
     service:
       ngap:
-        enabled: false
+        enabled: true
         name: amf-n2
         port: 38412
         nodeport: 31412
         protocol: SCTP
-        type: NodePort
+        type: ClusterIP
   smf:
     n4if:
       ipAddress: 10.100.50.244

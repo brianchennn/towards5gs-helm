@@ -63,6 +63,15 @@ spec:
         volumeMounts:
         - name: packetrusher-volume
           mountPath: /packetrusher/cmd/config
+      - name: debug
+        image: nicolaka/netshoot:latest
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/bash", "-c"]
+        args:
+          - iperf3 -s -p 5555
+        ports:
+        - containerPort: 5555
+
       volumes:
       - name: packetrusher-volume
         projected:

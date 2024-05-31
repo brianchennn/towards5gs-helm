@@ -28,7 +28,7 @@ global:
   sbi:
     scheme: http
   amf:
-    amfName: AMF1
+    amfName: AMF
     n2if:  # NGAP
       ipAddress: 10.100.50.241
     service:
@@ -46,7 +46,7 @@ global:
     masterIf: eth0
     subnetIP: 10.100.50.192
     rangeStart: 10.100.50.193
-    rangeEnd: 10.100.50.206
+    rangeEnd: 10.100.50.204
     cidr: 28
     gatewayIP: 10.100.50.207
     excludeIP: 10.100.50.207
@@ -99,9 +99,9 @@ amf:
   tolerations: []
   affinity: {}
   autoscaling:
-    enabled: false
+    enabled: true
     minReplicas: 1
-    maxReplicas: 10
+    maxReplicas: 2
     targetCPUUtilizationPercentage: 50
     targetMemoryUtilizationPercentage: 50
   ingress:

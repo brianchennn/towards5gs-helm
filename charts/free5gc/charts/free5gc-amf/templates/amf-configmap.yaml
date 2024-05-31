@@ -29,7 +29,7 @@ data:
       amfName: {{ $.Values.global.amf.amfName }}
       ngapIpList:
         {{- if $.Values.global.amf.service.ngap.enabled }}
-          - 0.0.0.0
+        - n2
         {{- else }}
         - {{ $.Values.global.amf.n2if.ipAddress }}
         {{- end }}
