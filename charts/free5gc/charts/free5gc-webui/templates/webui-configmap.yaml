@@ -19,6 +19,7 @@ metadata:
     app: {{ $.Values.global.projectName }}
 data:
   webuicfg.yaml: |
+
     info:
       version: 1.0.2
       description: WEBUI initial local configuration
@@ -34,7 +35,7 @@ data:
         port: {{ $.Values.webui.service.port }}
       billingServer:
         enable: true
-        hostIPv4: 127.0.0.1
+        hostIPv4: 0.0.0.0
         listenPort: 2122
         port: 2121
         tls:

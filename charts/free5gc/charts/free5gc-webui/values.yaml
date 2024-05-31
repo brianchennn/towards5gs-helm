@@ -27,7 +27,16 @@ global:
       nodePort: "30800"
   sbi:
     scheme: http
-
+  webui: 
+    service:
+      name: webui-nbilling
+      type: ClusterIP
+      port: "2122"
+  cgf:
+    service:
+      name: webui-ncgf
+      type: ClusterIP
+      port: "2121"
 initcontainers:
   curl:
     registry: towards5gs

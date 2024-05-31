@@ -34,7 +34,7 @@ COPY --from=builder /go/src/free5gc/bin/${NF} ./${NF}/
 
 # Copy certificates and config files
 COPY ./base/free5gc/config/${NF}cfg.yaml ./config/
-# COPY ./base/free5gc/cert/${NF}* ./cert/
+COPY ./base/free5gc/cert/${NF}* ./cert/
 
 WORKDIR /free5gc/${NF}
 
