@@ -57,6 +57,8 @@ spec:
       containers:
       - name: packetrusher
         image: towards5gs/packetrusher
+        securityContext:
+          privileged: true
         imagePullPolicy: {{ .image.pullPolicy }}
         command: ["sh", "-c", "sleep infinity" ]
         env: {{ toYaml .image.env | nindent 8 }}
