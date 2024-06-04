@@ -136,6 +136,8 @@ data:
         enable: true     # true or false
         expireTime: 6s   # default is 6 seconds
         maxRetryTimes: 4 # the max number of retransmission
+      checkpointPeriod: 10 # Millisecond, for per UE Context's Hash check
+      oamSamplePeriod: 1 # Second, for Number Of UEs, Registration Time, CPU Usage
       locality: area1 # Name of the location where a set of AMF, SMF, PCF and UPFs are located
       sctp: # set the sctp server setting <optinal>, once this field is set, please also add maxInputStream, maxOsStream, maxAttempts, maxInitTimeOut
         numOstreams: 3 # the maximum out streams of each sctp connection
@@ -146,7 +148,7 @@ data:
 
     logger:
       enable: true # true or false
-      level: info # how detailed to output, value: trace, debug, info, warn, error, fatal, panic
+      level: debug # how detailed to output, value: trace, debug, info, warn, error, fatal, panic
       reportCaller: false # enable the caller report or not, value: true or false
 
 {{- end }}

@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: delete-mongo-collection
+  labels:
+    app: free5gc
+  annotations:
+    "helm.sh/hook": pre-delete
+    "helm.sh/hook-delete-policy": hook-succeeded,hook-failed
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      containers:
+        - name: mongo-client
+          image: mongo:4.4
+          command:
+            - sh
+            - -c
+            - >
+              mongo --host mongodb --port 27017 --eval 'db.getSiblingDB("free5gc").NfProfile.drop()'
+             # mongo --host mongodb --port 27017 --eval 'db.getSiblingDB("free5gc-udsf").dropDatabase()'
+      restartPolicy: Never
+

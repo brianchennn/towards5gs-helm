@@ -92,7 +92,7 @@ data:
 
     test:
       printTimeStamp: false
-      periodicPDUSessionCreateDestroy: true
+      periodicPDUSessionCreateDestroy: false
     
 {{- end }}
 

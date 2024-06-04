@@ -64,7 +64,7 @@ isNgapNeeded: true
 
 amf:
   name: amf
-  replicaCount: 10
+  replicaCount: 1
   image:
     name: towards5gs/free5gc-amf
     tag: 3.4.0
@@ -81,8 +81,11 @@ amf:
   securityContext: {}
   resources:
     requests:
-      cpu: 20m
-      memory: 50Mi
+      cpu: 1000m
+      memory: 100Mi
+    limits:
+      cpu: 1000m
+      memory: 100Mi
   readinessProbe:
     initialDelaySeconds: 0
     periodSeconds: 1
@@ -101,9 +104,9 @@ amf:
   autoscaling:
     enabled: true
     minReplicas: 1
-    maxReplicas: 2
+    maxReplicas: 4
     targetCPUUtilizationPercentage: 50
-    targetMemoryUtilizationPercentage: 50
+    targetMemoryUtilizationPercentage: 60
   ingress:
     enabled: false
     annotations: {}

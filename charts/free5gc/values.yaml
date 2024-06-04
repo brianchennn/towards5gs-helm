@@ -122,3 +122,5 @@ mongodb:
     type: ClusterIP
     port: 27017
     nodePort: "30017"
+    
+
