@@ -19,3 +19,39 @@ spec:
 ---
 
 {{- end }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "free5gc-amf.fullname" $ }}-headless-service-1-0
+  namespace: default
+spec:
+  clusterIP: None
+  selector:
+    project: {{ $.Values.global.projectName }}
+    nf: {{ $.Values.amf.name }}
+    statefulset.kubernetes.io/pod-name: {{ include "free5gc-amf.fullname" $ }}-amf-1-0
+  ports:
+    - port: 80
+      protocol: TCP
+      name: http
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "free5gc-amf.fullname" $ }}-headless-service-2-0
+  namespace: default
+spec:
+  clusterIP: None
+  selector:
+    project: {{ $.Values.global.projectName }}
+    nf: {{ $.Values.amf.name }}
+    statefulset.kubernetes.io/pod-name: {{ include "free5gc-amf.fullname" $ }}-amf-2-0
+  ports:
+    - port: 80
+      protocol: TCP
+      name: http
