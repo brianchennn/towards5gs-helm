@@ -102,7 +102,7 @@ amf:
   tolerations: []
   affinity: {}
   autoscaling:
-    enabled: false
+    enabled: true
     minReplicas: 1
     maxReplicas: 4
     targetCPUUtilizationPercentage: 50
