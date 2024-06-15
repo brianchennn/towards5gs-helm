@@ -81,10 +81,10 @@ amf:
   securityContext: {}
   resources:
     requests:
-      cpu: 1000m
+      cpu: 500m
       memory: 100Mi
     limits:
-      cpu: 1000m
+      cpu: 500m
       memory: 100Mi
   readinessProbe:
     initialDelaySeconds: 0
