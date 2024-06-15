@@ -138,6 +138,13 @@ data:
         maxRetryTimes: 4 # the max number of retransmission
       checkpointPeriod: 1000 # Millisecond, for per UE Context's Hash check
       oamSamplePeriod: 1 # Second, for Number Of UEs, Registration Time, CPU Usage
+      weightFactorSetting: # Sum of weights should <= 255
+        rtt: 0
+        registrationTime: 127
+        cpu: 128
+        memory: 0
+      amfFailureArrivalRate: 10 # Seconds
+      ueContextModificationArrivalRate: 3 # Seconds
       locality: area1 # Name of the location where a set of AMF, SMF, PCF and UPFs are located
       sctp: # set the sctp server setting <optinal>, once this field is set, please also add maxInputStream, maxOsStream, maxAttempts, maxInitTimeOut
         numOstreams: 3 # the maximum out streams of each sctp connection
