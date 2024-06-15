@@ -66,10 +66,10 @@ spec:
         image: {{ .image.name }}:{{ .image.tag | default $.Chart.AppVersion }}
         resources:
           requests:
-            cpu: 300m
+            cpu: 200m
             memory: 100Mi
           limits:
-            cpu: 300m
+            cpu: 200m
             memory: 100Mi
         imagePullPolicy: {{ .image.pullPolicy }}
         securityContext:
