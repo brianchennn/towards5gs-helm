@@ -136,7 +136,7 @@ data:
         enable: true     # true or false
         expireTime: 6s   # default is 6 seconds
         maxRetryTimes: 4 # the max number of retransmission
-      checkpointPeriod: 100 # Millisecond, for per UE Context's Hash check
+      checkpointPeriod: 1000 # Millisecond, for per UE Context's Hash check
       oamSamplePeriod: 1 # Second, for Number Of UEs, Registration Time, CPU Usage
       weightFactorSetting: # Sum of weights should <= 255
         rtt: 0

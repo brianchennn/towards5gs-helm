@@ -43,8 +43,6 @@ initcontainers:
       name: towards5gs/sctp_test
       tag: latest
       imagePullPolicy: IfNotPresent
-    
-    
 
 packetrusher:
   enabled: true
@@ -53,37 +51,6 @@ packetrusher:
   image:
     name: towards5gs/packetrusher
     pullPolicy: Never
-    env:
-    - name: NGAP_LOCAL_ADDR
-      value: "10.100.50.250"
-    - name:  GTPU_LOCAL_ADDR
-      value: "10.100.50.236"
-    - name: NGAP_REMOTE_ADDR
-      value: "10.100.50.249"
-    - name: MCC
-      value: "208"
-    - name: MNC
-      value: "93"
-    - name:  TAC
-      value: "000001"
-    - name: GNBID
-      value: "000008"
-    - name: SST_GNB
-      value: "01"
-    - name: SD
-      value: "010203"
-    - name: MSIN
-      value:  "0000000003"
-    - name: KEY
-      value: "8baf473f2f8fd09487cccbd7097c6862"
-    - name: OPC
-      value: "8e27b6af0e692e750f32667a3b14605d"
-    - name: DNN
-      value: "internet"
-    - name: SST_UE
-      value: "01"
-    - name: NUM_UE
-      value: "100"
 
   n2if:  # NGAP
     ipAddress: 10.100.50.205
