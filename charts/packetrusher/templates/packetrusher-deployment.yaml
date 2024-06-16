@@ -61,7 +61,6 @@ spec:
           privileged: true
         imagePullPolicy: {{ .image.pullPolicy }}
         command: ["sh", "-c", "sleep infinity" ]
-        env: {{ toYaml .image.env | nindent 8 }}
         volumeMounts:
         - name: packetrusher-volume
           mountPath: /packetrusher/cmd/config
