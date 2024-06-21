@@ -1,0 +1,41 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: network-delay
+  namespace: default
+spec:
+  action: delay
+  mode: one
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      project: {{ $.Values.global.projectName }}
+      nf: {{ $.Values.amf.name }}
+      statefulset.kubernetes.io/pod-name: {{ include "free5gc-amf.fullname" $ }}-amf-1-0
+  delay:
+    latency: "2000ms"
+    correlation: "0"
+    jitter: "0ms"
+
+---
+
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: network-delay
+  namespace: default
+spec:
+  action: delay
+  mode: one
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      project: {{ $.Values.global.projectName }}
+      nf: {{ $.Values.amf.name }}
+      statefulset.kubernetes.io/pod-name: {{ include "free5gc-amf.fullname" $ }}-amf-2-0
+  delay:
+    latency: "1000ms"
+    correlation: "0"
+    jitter: "0ms"
