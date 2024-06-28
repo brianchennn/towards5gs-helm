@@ -42,7 +42,7 @@ db:
 # This section can be used to override the default values in the MongoDB chart (remember MongoDB is a subchart of the free5gcControlplane chart since control plane NFs rely on it.
 mongodb:
   service:
-    name: mongodb
+    name: 10.216.0.51
     type: ClusterIP
     port: 27017
     nodePort: "30017"

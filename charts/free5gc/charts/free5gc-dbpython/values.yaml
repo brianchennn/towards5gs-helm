@@ -32,7 +32,7 @@ initcontainers:
 # This section can be used to override the default values in the MongoDB
 mongodb:
   service:
-    name: mongodb
+    name: 10.216.0.51
     type: ClusterIP
     port: 27017
     nodePort: "30017"
