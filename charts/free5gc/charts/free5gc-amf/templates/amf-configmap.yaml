@@ -136,6 +136,14 @@ data:
         enable: true     # true or false
         expireTime: 6s   # default is 6 seconds
         maxRetryTimes: 4 # the max number of retransmission
+      locality: area1 # Name of the location where a set of AMF, SMF, PCF and UPFs are located
+      sctp: # set the sctp server setting <optinal>, once this field is set, please also add maxInputStream, maxOsStream, maxAttempts, maxInitTimeOut
+        numOstreams: 3 # the maximum out streams of each sctp connection
+        maxInstreams: 5 # the maximum in streams of each sctp connection
+        maxAttempts: 2 # the maximum attempts of each sctp connection
+        maxInitTimeout: 2 # the maximum init timeout of each sctp connection
+      defaultUECtxReq: false # the default value of UE Context Request to decide when triggering Initial Context Setup procedure
+
       checkpointPeriod: 1000 # Millisecond, for per UE Context's Hash check
       oamSamplePeriod: 1 # Second, for Number Of UEs, Registration Time, CPU Usage
       weightFactorSetting: # Sum of weights should <= 255
@@ -145,14 +153,7 @@ data:
         memory: 0
       amfFailureArrivalRate: 10 # Seconds
       ueContextModificationArrivalRate: 3 # Seconds
-      locality: area1 # Name of the location where a set of AMF, SMF, PCF and UPFs are located
-      sctp: # set the sctp server setting <optinal>, once this field is set, please also add maxInputStream, maxOsStream, maxAttempts, maxInitTimeOut
-        numOstreams: 3 # the maximum out streams of each sctp connection
-        maxInstreams: 5 # the maximum in streams of each sctp connection
-        maxAttempts: 2 # the maximum attempts of each sctp connection
-        maxInitTimeout: 2 # the maximum init timeout of each sctp connection
-      defaultUECtxReq: false # the default value of UE Context Request to decide when triggering Initial Context Setup procedure
-
+      
     logger:
       enable: true # true or false
       level: debug # how detailed to output, value: trace, debug, info, warn, error, fatal, panic
