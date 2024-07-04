@@ -5,8 +5,7 @@ TAG = 3.4.0
 all: $(NFs) webui
 
 $(NFs):
-	docker build -t $(PREFIX)-$@:$(TAG) --build-arg NF=$@ . --no-cache
-
+	docker build -t $(PREFIX)-$@:$(TAG) --build-arg NF=$@ . --no-cache && ./load_to_kind.sh
 dbpython:
 	docker build -t $(PREFIX)-$@:$(TAG) -f ./free5gc-$@/Dockerfile ./free5gc-$@ --no-cache
 
