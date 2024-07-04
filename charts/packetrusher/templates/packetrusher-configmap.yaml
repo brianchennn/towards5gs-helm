@@ -37,7 +37,7 @@ data:
         sst: "01"
         sd: "010203" # optional, can be removed if not used
       K: 3.0
-
+      waitSecAfterNGSetup: 2 # Second
     ue:
       msin: "0000000001"
       key: "8baf473f2f8fd09487cccbd7097c6862"
