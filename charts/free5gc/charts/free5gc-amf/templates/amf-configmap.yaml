@@ -148,7 +148,7 @@ data:
       oamSampleInterval: 1 # Second, for Number Of UEs, Registration Time, CPU Usage
       aMFConfigurationUpdateInterval: 5 # Second
       calculateWeightFactorInterval: 1 # Second
-      exponentialSmoothAlgAlpha: 0.1 # 0 < alpha <= 1
+      exponentialSmoothAlgAlpha: 0.01 # 0 < alpha <= 1
       weightFactorSetting: # Sum of weights should <= 255
         rtt: 0
         registrationTime: 127
