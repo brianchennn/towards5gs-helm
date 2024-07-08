@@ -82,10 +82,10 @@ amf:
   resources:
     requests:
       cpu: 300m
-      memory: 100Mi
+      memory: 300Mi
     limits:
       cpu: 300m
-      memory: 100Mi
+      memory: 300Mi
   readinessProbe:
     initialDelaySeconds: 0
     periodSeconds: 1
