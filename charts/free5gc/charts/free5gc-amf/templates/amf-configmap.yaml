@@ -151,8 +151,8 @@ data:
       exponentialSmoothAlgAlpha: 1 # 0 < alpha <= 1
       weightFactorSetting: # Sum of weights should <= 255
         rtt: 0
-        registrationTime: 0
-        cpu: 255
+        registrationTime: 127
+        cpu: 128
         memory: 0
       amfFailureArrivalRate: 10 # Seconds
       ueContextModificationArrivalRate: 3 # Seconds
