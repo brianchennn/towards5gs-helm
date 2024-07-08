@@ -146,13 +146,13 @@ data:
 
       checkpointInterval: 1000 # Millisecond, for per UE Context's Hash check
       oamSampleInterval: 1 # Second, for Number Of UEs, Registration Time, CPU Usage
-      aMFConfigurationUpdateInterval: 2 # Second
-      calculateWeightFactorInterval: 2 # Second
-      exponentialSmoothAlgAlpha: 0.001 # 0 < alpha <= 1
+      aMFConfigurationUpdateInterval: 5 # Second
+      calculateWeightFactorInterval: 1 # Second
+      exponentialSmoothAlgAlpha: 1 # 0 < alpha <= 1
       weightFactorSetting: # Sum of weights should <= 255
         rtt: 0
-        registrationTime: 127
-        cpu: 128
+        registrationTime: 0
+        cpu: 255
         memory: 0
       amfFailureArrivalRate: 10 # Seconds
       ueContextModificationArrivalRate: 3 # Seconds
