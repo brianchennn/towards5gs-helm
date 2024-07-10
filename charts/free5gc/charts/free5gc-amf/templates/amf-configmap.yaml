@@ -148,7 +148,7 @@ data:
       oamSampleInterval: 1000 # Millisecond, for Number Of UEs, Registration Time, CPU Usage
       aMFConfigurationUpdateInterval: 1000 # Millisecond
       calculateWeightFactorInterval: 1000 # Millisecond
-      exponentialSmoothAlgAlpha: 0.1 # 0 < alpha <= 1
+      exponentialSmoothAlgAlpha: 1 # 0 < alpha <= 1
       weightFactorSetting: # Sum of weights should <= 255
         cpu: 255
         memory: 0
