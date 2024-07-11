@@ -146,8 +146,8 @@ data:
 
       checkpointInterval: 1000 # Millisecond, for per UE Context's Hash check
       oamSampleInterval: 1000 # Millisecond, for Number Of UEs, Registration Time, CPU Usage
-      aMFConfigurationUpdateInterval: 500 # Millisecond
-      calculateWeightFactorInterval: 500 # Millisecond
+      aMFConfigurationUpdateInterval: 5000 # Millisecond
+      calculateWeightFactorInterval: 5000 # Millisecond
       exponentialSmoothAlgAlpha: 0.01 # 0 < alpha <= 1
       weightFactorSetting: # Sum of weights should <= 255
         cpu: 255
