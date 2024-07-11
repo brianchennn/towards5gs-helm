@@ -144,7 +144,7 @@ data:
         maxInitTimeout: 2 # the maximum init timeout of each sctp connection
       defaultUECtxReq: false # the default value of UE Context Request to decide when triggering Initial Context Setup procedure
 
-      checkpointInterval: 500 # Millisecond, for per UE Context's Hash check
+      checkpointInterval: 100 # Millisecond, for per UE Context's Hash check
       oamSampleInterval: 1000 # Millisecond, for Number Of UEs, Registration Time, CPU Usage
       aMFConfigurationUpdateInterval: 5000 # Millisecond
       calculateWeightFactorInterval: 5000 # Millisecond
