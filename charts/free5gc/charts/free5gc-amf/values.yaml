@@ -64,7 +64,7 @@ isNgapNeeded: true
 
 amf:
   name: amf
-  replicaCount: 1
+  replicaCount: 3
   image:
     name: towards5gs/free5gc-amf
     tag: 3.4.0
