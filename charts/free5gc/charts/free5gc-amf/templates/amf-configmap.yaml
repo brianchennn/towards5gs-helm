@@ -145,10 +145,10 @@ data:
       defaultUECtxReq: false # the default value of UE Context Request to decide when triggering Initial Context Setup procedure
 
       checkpointInterval: 1000 # Millisecond, for per UE Context's Hash check
-      oamSampleInterval: 1 # Second, for Number Of UEs, Registration Time, CPU Usage
-      aMFConfigurationUpdateInternal: 2 # Second
-      calculateWeightFactorInterval: 2 # Second
-      exponentialSmoothAlgAlpha: 0.01 # 0 < alpha <= 1
+      oamSampleInterval: 1000 # Millisecond, for Number Of UEs, Registration Time, CPU Usage
+      aMFConfigurationUpdateInterval: 5000 # Millisecond
+      calculateWeightFactorInterval: 5000 # Millisecond
+      exponentialSmoothAlgAlpha: 1 # 0 < alpha <= 1
       weightFactorSetting: # Sum of weights should <= 255
         cpu: 255
         memory: 0
